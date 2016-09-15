@@ -3,10 +3,12 @@
 ## Format File Input
 
 Nama file : deskripsi.dat
-
+    
+    (Jumlah state)
     (Daftar state, alphanumeric, dipisahkan spasi)
     (Daftar simbol, ditulis berurutan, tanpa spasi)
     (State awal)
+    (Jumlah final state)
     (Daftar state akhir, dipisahkan spasi)
     (Transition function berbentuk tabel)
 
