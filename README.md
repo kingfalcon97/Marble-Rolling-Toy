@@ -5,8 +5,8 @@
 Nama file : deskripsi.dat
     
     (Jumlah state)
-    (Daftar state, alphanumeric, dipisahkan spasi)
-    (Daftar simbol, ditulis berurutan, tanpa spasi)
+    (Daftar state, dipisahkan spasi)
+    (Daftar simbol, tidak dipisahkan spasi)
     (State awal)
     (Jumlah final state)
     (Daftar state akhir, dipisahkan spasi)
