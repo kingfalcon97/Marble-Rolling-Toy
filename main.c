@@ -4,7 +4,7 @@
 #include <assert.h>
 #include "dfa.h"
 
-#define LANG_MAX_LENGTH 1001
+#define LANG_MAX_LENGTH 1000
 
 void readFile(char * filename);
 
@@ -13,14 +13,14 @@ int main(int argc, char ** argv){
   int now;
   int len;
 
-  char str[LANG_MAX_LENGTH];
+  char str[LANG_MAX_LENGTH+1];
 
   initDFA();
   if (argc>1) readFile(argv[1]);
   else readFile("deskripsi.dat");
 
-  printf("Tulis string input, maksimal %d karakter :\n", LANG_MAX_LENGTH-1);
-  fgets(str, LANG_MAX_LENGTH, stdin);
+  printf("Tulis string input, maksimal %d karakter :\n", LANG_MAX_LENGTH);
+  fgets(str, LANG_MAX_LENGTH+1, stdin);
   len = strlen(str);
 
   now = startState;
