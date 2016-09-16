@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#define bool int
+#define bool short
 #define true 1
 #define false 0
 
@@ -14,6 +14,10 @@
 char * idElement[MAX_ELEMENT];
 char idSymbol[MAX_SYMBOL];
 int toWhere[MAX_ELEMENT][MAX_SYMBOL];
+bool isFinal[MAX_ELEMENT];
+
+int nElement, nSymbol, nFinal;
+int startState;
 
 void setIdElement(int number, char * str){
   idElement[number] = malloc(strlen(str)+1);
@@ -79,28 +83,78 @@ void init(){
 
   memset(idSymbol, 0, sizeof(idSymbol));
   memset(toWhere, -1, sizeof(toWhere));
+  memset(isFinal, 0, sizeof(isFinal));
 }
 
 void readFile(char * filename){
   FILE *f;
-  int n,i;
+  int n,i,j;
   char *inp = malloc(MAX_LENGTH+5);
 
   f = fopen(filename, "r");
 
+  assert(f!=NULL);
+
+  /*(Jumlah state)*/
   fscanf(f, "%d", &n);
   assert(n <= MAX_ELEMENT);
+  nElement = n;
 
-  for(i=0;i<n;i++){
+  /*(Daftar state, dipisahkan spasi)*/
+  for(i=0;i<nElement;i++){
     fscanf(f,"%s", inp);
+
+    for(j=0;j<i;j++){
+      assert(strcmp(inp,idElement[j])!=0);
+    }
+
     setIdElement(0,inp);
   }
 
+  /*(Daftar simbol, tidak dipisahkan spasi)*/
   fscanf(f, "%s", inp);
   assert(strlen(inp)<=MAX_SYMBOL);
+  nSymbol = strlen(inp);
+
+  for(i = 0; i < nSymbol; i++){
+    for(j = 0; j < i; j++){
+      assert(inp[i]!=inp[j]);
+    }
+
+    setIdSymbol(i, inp[i]);
+  }
+
+  /*(State awal)*/
+  fscanf(f, "%s", inp);
+  startState = getIdElement(inp);
+
+  /*(Jumlah final state)*/
+  fscanf(f, "%d", &n);
+  assert(n <= nElement);
+  nFinal = n;
+
+  /*(Daftar state akhir, dipisahkan spasi)*/
+  for(i=0;i<nFinal;i++){
+    fscanf(f, "%s", inp);
+
+    j = getIdElement(inp);
+    assert(!(isFinal[j]));
+    isFinal[j] = true;
+  }
+
+  /*(Transition function berbentuk tabel)*/
+  for(i=0;i<nElement;i++){
+    for(j=0;j<nSymbol;j++){
+      fscanf(f,"%s",inp);
+      toWhere[i][j] = getIdElement(inp);
+    }
+  }
 }
 
-int main(){
+int main(int argc, char ** argv){
   init();
+
+  if (argc>1) readFile(argv[1]);
+  else readFile("deskripsi.dat");
   return 0;
 }
