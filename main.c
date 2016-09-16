@@ -28,7 +28,7 @@ int main(int argc, char ** argv){
   printf("->%s\n", idElement[startState]);
 
   for(i = 0; i < len-1; i++){
-    now = toWhere[now][getIdSymbol(str[i])];
+    now = next(now,str[i]);
     printf("Mendapat input '%c', sekarang ada di state %s\n", str[i], idElement[now]);
   }
 
