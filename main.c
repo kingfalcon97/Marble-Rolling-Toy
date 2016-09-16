@@ -4,16 +4,37 @@
 #include <assert.h>
 #include "dfa.h"
 
-void init(){
-  int i;
+#define LANG_MAX_LENGTH 1001
 
-  for(i=0;i<MAX_ELEMENT;i++){
-    idElement[i] = NULL;
+void readFile(char * filename);
+
+int main(int argc, char ** argv){
+  int i;
+  int now;
+  int len;
+
+  char str[LANG_MAX_LENGTH];
+
+  initDFA();
+  if (argc>1) readFile(argv[1]);
+  else readFile("deskripsi.dat");
+
+  printf("Tulis string input, maksimal %d karakter :\n", LANG_MAX_LENGTH-1);
+  fgets(str, LANG_MAX_LENGTH, stdin);
+  len = strlen(str);
+
+  now = startState;
+
+  for(i = 0; i < len-1; i++){
+    now = toWhere[now][getIdSymbol(str[i])];
   }
 
-  memset(idSymbol, 0, sizeof(idSymbol));
-  memset(toWhere, -1, sizeof(toWhere));
-  memset(isFinal, 0, sizeof(isFinal));
+  if (isFinal[now]){
+    printf("Berakhir di Final State, yaitu %s. String diterima\n", idElement[now]);
+  }
+  else{
+    printf("Berakhir tidak di Final State, yaitu %s. String ditolak\n", idElement[now]);
+  }
 }
 
 void readFile(char * filename){
@@ -79,24 +100,4 @@ void readFile(char * filename){
       toWhere[i][j] = getIdElement(inp);
     }
   }
-}
-
-int main(int argc, char ** argv){
-  int i;
-
-  init();
-
-  if (argc>1) readFile(argv[1]);
-  else readFile("deskripsi.dat");
-
-  for(i=0;i<nElement;i++){
-    printf("%s", idElement[i]);
-    if (isFinal[i]) printf(" is Final");
-    printf("\n");
-  }
-
-  for(i=0;i<nSymbol;i++){
-    printf("%c\n", idSymbol[i]);
-  }
-  return 0;
 }

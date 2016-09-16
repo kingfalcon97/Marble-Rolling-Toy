@@ -17,6 +17,8 @@ extern bool isFinal[MAX_ELEMENT];
 extern int nElement, nSymbol, nFinal;
 extern int startState;
 
+void initDFA();
+
 void setIdElement(int number, char * str);
 
 void setIdSymbol(int number, char c);

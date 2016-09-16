@@ -1,5 +1,4 @@
 #include "dfa.h"
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -11,6 +10,18 @@ bool isFinal[MAX_ELEMENT];
 
 int nElement, nSymbol, nFinal;
 int startState;
+
+void initDFA(){
+  int i;
+
+  for(i=0;i<MAX_ELEMENT;i++){
+    idElement[i] = NULL;
+  }
+
+  memset(idSymbol, 0, sizeof(idSymbol));
+  memset(toWhere, -1, sizeof(toWhere));
+  memset(isFinal, 0, sizeof(isFinal));
+}
 
 void setIdElement(int number, char * str){
   idElement[number] = malloc(strlen(str)+1);
