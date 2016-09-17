@@ -3,7 +3,8 @@
 Beberapa asumsi yang digunakan dalam pembuatan program DFA ini adalah
 \begin{itemize}
   \item Banyak \textit{state} maksimal 1000.
-  \item Simbol berupa karakter.
+  \item Panjang \textit{state} maksimal 1000 karakter, tanpa spasi.
+  \item Simbol berupa karakter bukan spasi.
   \item File eksternal yang digunakan untuk mendapatkan deskripsi DFA bernama \textit{deskripsi.dat} dan berformat sebagai berikut:
 
   \begin{lstlisting}[frame=single]
@@ -21,5 +22,5 @@ Untuk fungsi transisi, ketentuannya sebagai berikut :
   \item Urutan \textit{state} sesuai penulisan di \textit{deskripsi.dat}
   \item Urutan simbol sesuai penulisan di \textit{deskripsi.dat}
   \item Tabel fungsi transisi terdiri dari sejumlah state baris, yang tiap baris berisi sejumlah simbol state
-  \item Untuk setiap $i$ dan $j$ dengan $1 \leq i \leq jumlah state$ dan $1 \leq j \leq jumlah simbol$, simbol ke-$j$ akan mengarahkan state $i$ ke state ke-$j$ yang ada di baris ke-$i$
+  \item Untuk setiap $i$ dan $j$ dengan $1 \leq i \leq jumlah-state$ dan $1 \leq j \leq jumlah-simbol$, simbol ke-$j$ akan mengarahkan state $i$ ke state ke-$j$ yang ada di baris ke-$i$
 \end{itemize}
