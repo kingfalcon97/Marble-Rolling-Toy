@@ -1,0 +1,36 @@
+\section{DFA}
+\label{sec:DFA}
+Translasi permasalahan \textit{Marble Rolling Toy} dalam notasi DFA :
+\begin{equation*}
+  A = (Q, \Sigma, \delta, q_0, F)
+\end{equation*}
+di mana
+\begin{align*}
+  \centering
+  Q &= \{LLLC, RLLC, LRRC, LRLC, RRRC, LRLD, \\&RRLC, LLRD, RRLD, LLLD, RLRD, RLRC, RLLD\} \\
+  \Sigma &= \{A, B\} \\
+  q_0 &= LLLC \\
+  F &= \{LRLD, LLRD, RRLD, LLLD, RLRD, RLLD\} \\
+\end{align*}
+dan $\delta$ dalam tabel berikut :
+\begin{table}[h!]
+  \centering
+  \caption{Tabel $\delta$ (bukan tabel notasi sederhana DFA)}
+  \begin{tabular}{c||c|c}
+     $q$ & $\delta(q,A)$ & $\delta(q,B)$ \\
+     \hline \hline
+     $LLLC$ & $RLLC$ & $LRRC$ \\
+     $RLLC$ & $LRLC$ & $RRRC$ \\
+     $LRRC$ & $RRRC$ & $LRLD$ \\
+     $LRLC$ & $RRLC$ & $LLRD$ \\
+     $RRRC$ & $LLRD$ & $RRLD$ \\
+     $LRLD$ & $RRLC$ & $LLRD$ \\
+     $RRLC$ & $LLLD$ & $RLRD$ \\
+     $LLRD$ & $RLRC$ & $LLLD$ \\
+     $RRLD$ & $LLLD$ & $RLRD$ \\
+     $LLLD$ & $RLLC$ & $LRRC$ \\
+     $RLRD$ & $LRRC$ & $RLLD$ \\
+     $RLRC$ & $LRRC$ & $RLLD$ \\
+     $RLLD$ & $LRLC$ & $RRRC$ \\
+  \end{tabular}
+\end{table}

@@ -1,0 +1,31 @@
+\documentclass[12pt]{report}
+
+\usepackage[a4paper, top=4cm, left=4cm, right=3cm, bottom=3cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+
+\title{Laporan Tugas Teori Bahasa Formal \& Otomata :\\ Implementasi DFA pada \textit{Marble Rolling Toy}}
+\author{Turfa Auliarachman, 13515133}
+\date{19 September 2016}
+
+\lstset{showstringspaces=false}
+
+\begin{document}
+  \pagenumbering{gobble}
+  \maketitle
+  \newpage
+  \pagenumbering{arabic}
+  \chapter{Deskripsi DFA Terkait}
+  \input{deskripsi}
+  \input{dfa}
+  \chapter{Pembuatan Program}
+  \input{asumsi}
+  \input{fileeksternal}
+  \input{source}
+  \chapter{\textit{Testing}}
+  \input{test}
+\end{document}
